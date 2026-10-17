@@ -1,0 +1,10 @@
+{
+  "id": "party_board",
+  "name": "Party Board",
+  "description": "What the mod does, in one line.",
+  "version": "0.1.0",
+  "author": "Tutez",
+  "api": "0.1",
+  "entry": "Main",
+  "uses": []
+}
