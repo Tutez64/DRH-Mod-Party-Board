@@ -1,7 +1,15 @@
 # Party Board
 
 <!-- drh:show -->
-What the mod does and how to use it: the launcher shows this part on the mod's page.
-<!-- /drh:show -->
+In a dungeon, press P to see all the players inside it. For each of them, it shows their:
+- Hero and skin (avatar)
+- Level
+- Weapons, with their rarity, level and modifiers
 
-Made from [DRH-Mods-Template](https://github.com/Tutez64/DRH-Mods-Template): [Making a mod](https://github.com/Tutez64/Dungeon-Rampage-Haxe/blob/master/docs/making-a-mod.md) gives the next steps.
+You can act on them:
+- Send a friend request
+- Block
+- Report
+
+Someone that left the dungeon stays visible and you can still act on it until you leave.
+<!-- /drh:show -->
