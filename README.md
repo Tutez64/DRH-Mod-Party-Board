@@ -1,5 +1,7 @@
 # Party Board
 
+A mod for [Dungeon Rampage Haxe](https://github.com/Tutez64/Dungeon-Rampage-Haxe): in a dungeon, see the players with you and act on them.
+
 <!-- drh:show -->
 In a dungeon, press P to see all the players inside it. For each of them, it shows their:
 - Hero and skin (avatar)
