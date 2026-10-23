@@ -4,7 +4,7 @@
   "description": "See players' info (level, weapons, ...) and act on them (friend, block, report) in a dungeon.",
   "version": "0.1.0",
   "author": "Tutez",
-  "api": "0.1",
+  "api": "1.0",
   "entry": "Main",
   "uses": []
 }
