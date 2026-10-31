@@ -2,7 +2,7 @@
   "id": "party_board",
   "name": "Party Board",
   "description": "See players' info (level, weapons, ...) and act on them (friend, block, report) in a dungeon.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Tutez",
   "api": "1.0",
   "entry": "Main",
