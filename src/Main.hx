@@ -32,6 +32,7 @@ class Main extends Mod {
 			toggle();
 			return true;
 		});
+		// Read while the board is closed too: it then opens on players who already left.
 		ctx.onHeroSpawned(function(_:Hero) redraw());
 		ctx.onHeroDespawned(function(_:Hero) redraw());
 		ctx.onTownEnter(function() {
@@ -73,13 +74,13 @@ class Main extends Mod {
 		return null;
 	}
 
+	/** Reads the heroes, and draws the board if it is open. */
 	function redraw():Void {
-		if (!board.root.visible)
-			return;
 		var shown = rows();
 		for (entry in shown)
 			entry.refresh();
-		board.render(shown, ctx.viewWidth, ctx.viewHeight);
+		if (board.root.visible)
+			board.render(shown, ctx.viewWidth, ctx.viewHeight);
 	}
 
 	function act(entry:Entry, action:String):Void {
