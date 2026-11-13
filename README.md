@@ -3,7 +3,7 @@
 A mod for [Dungeon Rampage Haxe](https://github.com/Tutez64/Dungeon-Rampage-Haxe): in a dungeon, see the players with you and act on them.
 
 <!-- drh:show -->
-In a dungeon, press P to see all the players inside it. For each of them, it shows their:
+In a dungeon, press P to see all the players inside it (the key can be changed in the game's settings, under CONTROLS). For each of them, it shows their:
 - Hero and skin (avatar)
 - Level
 - Weapons, with their rarity, level and modifiers

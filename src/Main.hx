@@ -7,11 +7,11 @@ import mods.api.dungeon.Player;
 import mods.party_board.ui.Board;
 
 /**
- * P in a dungeon shows every player met in it: hero class, level and weapons, with
+ * Its key in a dungeon shows every player met in it: hero class, level and weapons, with
  * add friend, block and report buttons. Players who left stay listed until the next town.
  */
 class Main extends Mod {
-	/** P, for party. Tab already moves the focus to the chat. */
+	/** P, for party, until the player picks another. Tab already moves the focus to the chat. */
 	static inline final KEY:UInt = 80;
 
 	var ctx:Context;
@@ -26,11 +26,9 @@ class Main extends Mod {
 		board = new Board(act);
 		ctx.overlay.addChild(board.root);
 		// Works from the first hero to the return to town, end screen included.
-		ctx.onKeyDown(function(key:UInt):Bool {
-			if (key != KEY || ctx.state.players.length == 0)
-				return false;
-			toggle();
-			return true;
+		ctx.keys.action("toggle", "Show or hide", "Shows or hides the players met in the dungeon.", KEY).onPress(function() {
+			if (ctx.state.players.length > 0)
+				toggle();
 		});
 		// Read while the board is closed too: it then opens on players who already left.
 		ctx.onHeroSpawned(function(_:Hero) redraw());
