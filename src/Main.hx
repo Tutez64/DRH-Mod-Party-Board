@@ -8,7 +8,7 @@ import mods.party_board.ui.Board;
 
 /**
  * Its key in a dungeon shows every player met in it: hero class, level and weapons, with
- * add friend, block and report buttons. Players who left stay listed until the next town.
+ * add friend, block and report buttons. Players who left stay listed until the dungeon is left.
  */
 class Main extends Mod {
 	/** P, for party, until the player picks another. Tab already moves the focus to the chat. */
@@ -25,7 +25,7 @@ class Main extends Mod {
 		this.ctx = ctx;
 		board = new Board(act);
 		ctx.overlay.addChild(board.root);
-		// Works from the first hero to the return to town, end screen included.
+		// Works from the first hero to the end of the dungeon, end screen included.
 		ctx.keys.action("toggle", "Show or hide", "Shows or hides the players met in the dungeon.", KEY).onPress(function() {
 			if (ctx.state.players.length > 0)
 				toggle();
@@ -33,26 +33,25 @@ class Main extends Mod {
 		// Read while the board is closed too: it then opens on players who already left.
 		ctx.onHeroSpawned(function(_:Hero) redraw());
 		ctx.onHeroDespawned(function(_:Hero) redraw());
-		ctx.onTownEnter(function() {
-			entries = [];
-			board.root.visible = false;
-		});
+		// A dungeon left empties the players: the board closes at the first of these that follows.
+		ctx.onFloorEnter(function(_) redraw());
+		ctx.onFloorExit(function(_) redraw());
+		ctx.onTownEnter(function() redraw());
 	}
 
-	/** The players met so far, the local one first, each with its row state. */
+	/** The players met so far, the local one first, each with its row state. Those of a dungeon left are dropped. */
 	function rows():Array<Entry> {
 		var out:Array<Entry> = [];
 		for (player in ctx.state.players) {
 			var entry = find(player);
-			if (entry == null) {
+			if (entry == null)
 				entry = new Entry(player);
-				entries.push(entry);
-			}
 			if (player.local)
 				out.unshift(entry);
 			else
 				out.push(entry);
 		}
+		entries = out;
 		return out;
 	}
 
@@ -72,9 +71,11 @@ class Main extends Mod {
 		return null;
 	}
 
-	/** Reads the heroes, and draws the board if it is open. */
+	/** Reads the heroes, and draws the board if it is open. It closes once the dungeon is left, for the town or for another one. */
 	function redraw():Void {
 		var shown = rows();
+		if (shown.length == 0)
+			board.root.visible = false;
 		for (entry in shown)
 			entry.refresh();
 		if (board.root.visible)
