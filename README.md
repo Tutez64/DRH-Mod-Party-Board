@@ -7,6 +7,7 @@ In a dungeon, press P to see all the players inside it (the key can be changed i
 - Hero and skin (avatar)
 - Level
 - Weapons, with their rarity, level and modifiers
+- Ascension star, when applicable
 
 You can act on them:
 - Send a friend request

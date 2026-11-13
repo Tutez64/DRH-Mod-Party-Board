@@ -16,6 +16,9 @@ class Board {
 
 	static inline final PORTRAIT:Float = 52;
 
+	/** The ascension star, over the portrait's upper right corner, as the game puts it. */
+	static inline final STAR:Float = 26;
+
 	static inline final SLOT:Float = 56;
 
 	static inline final BUTTON_WIDTH:Float = 76;
@@ -70,6 +73,11 @@ class Board {
 		portrait.y = y + (ROW - PORTRAIT) / 2;
 		portrait.alpha = dim ? 0.4 : 1;
 		root.addChild(portrait);
+		var star = entry.player.createAscensionStar(STAR);
+		star.x = portrait.x + PORTRAIT - STAR + 6;
+		star.y = portrait.y - 4;
+		star.alpha = portrait.alpha;
+		root.addChild(star);
 
 		var nameColor = you ? 0x9FE0A0 : dim ? 0x7A7F8A : 0xFFFFFF;
 		text(entry.player.name + (you ? "  (you)" : ""), 72, y + 12, 184, 14, nameColor, true);
